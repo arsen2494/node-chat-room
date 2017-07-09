@@ -1,0 +1,26 @@
+extends ../layouts/layout
+
+block content
+    div.row
+        div.col-md-8.col-md-offset-2
+            h1 Rooms
+            table.table.table-responsive.table-hover
+                thead
+                    tr
+                        th Room logo
+                        th Name
+                        th Availability
+                        th Type
+                        th Actions
+                each room in rooms
+                    tr
+                        td
+                            img(alt="", src="/public/images/" + room.img).img-responsive.img-circle.chat-logo
+                        td= room.name
+                        if room.canSee
+                            td For all
+                        else
+                            td Only logged in users
+                        td= room.type
+                        td
+                            a(href="/rooms/" + room._id).btn.btn-default Join

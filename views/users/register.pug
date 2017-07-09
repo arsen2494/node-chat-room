@@ -1,0 +1,25 @@
+extends ../layouts/layout
+
+block content
+    div.row
+        div.col-md-6.col-md-offset-3
+            h1 Register
+            if hasError
+                div.alert.alert-danger
+                    each message in messages
+                        p= message
+            form(action="/users/register", method="POST")
+                div.form-grop
+                    label(for="name") Name
+                    input(type="text", name="name", placeholder="Enter your name...").form-control#name
+                div.form-group
+                    label(for="email") Email
+                    input(type="email", name="email", placeholder="Enter your email...").form-control#email
+                div.form-group
+                    label(for="password") Password
+                    input(type="password", name="password", placeholder="Enter your password...").form-control#password
+                div.form-group
+                    label(for="password2") Confirm Password
+                    input(type="password", name="password2", placeholder="Confirm Password...").form-control#password2
+                input(type="hidden", value=csrfToken, name="_csrf")
+                button(type="submit").btn.btn-primary Register

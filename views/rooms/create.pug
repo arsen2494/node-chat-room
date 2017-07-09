@@ -1,0 +1,29 @@
+extends ../layouts/layout
+
+block content
+    div.row
+        div.col-md-6.col-md-offset-3
+            h1 Create room
+            if hasError
+                div.alert.alert-danger
+                    each message in messages
+                        p= message
+            form(action="/rooms", method="POST", enctype="multipart/form-data")
+                input(type="hidden", name="_csrf", value=csrfToken)
+                div.form-group
+                    label(for="name") Name
+                    input(type="text", name="name", placeholder='Room name...')#name.form-control
+                div.form-group
+                    label(for="type") Room type
+                    select(name="type")#type.form-control
+                        option(value="private") Private
+                        option(value="public") Public
+                div.form-group
+                    label(for="availability") Who can see this room?
+                    select(name="availability")#availability.form-control
+                        option(value=1) All
+                        option(value=2) Only logged in users
+                div.form-group
+                    label(for="img") Room image
+                    input(type="file", name="img")#img
+                button(type="submit").btn.btn-primary Create

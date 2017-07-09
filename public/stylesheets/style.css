@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.chat-logo {
+  width: 32px;
+  max-width: 32px;
+}

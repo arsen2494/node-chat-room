@@ -1,0 +1,28 @@
+nav.navbar.navbar-default
+    div.container-fluid
+        div.navbar-header
+            button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false").navbar-toggle.collapsed
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a(href="/").navbar-brand Home
+        div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+            ul.nav.navbar-nav.navbar-right
+                if !login
+                    li
+                        a(href="/users/register") Register
+                    li
+                        a(href="/users/login") Login
+                li.dropdown
+                    a(href="#", data-toggle="dropdown" role="button", aria-haspopup="true", aria-expanded="false") Chat Rooms Management
+                        span.caret
+                    ul.dropdown-menu
+                        li
+                            a(href="/rooms") Rooms
+                        if login
+                            li
+                                a(href="/rooms/create") Create room
+                            li(role="separator").divider
+                            li
+                                a(href="/users/logout") Logout

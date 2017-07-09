@@ -11,7 +11,6 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const validator = require('express-validator');
 const fileUpload = require('express-fileupload');
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 let rooms = require('./routes/rooms');
@@ -47,6 +46,7 @@ app.use(function (req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/rooms', rooms);
+app.use('/invite_room', require('./routes/invites'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

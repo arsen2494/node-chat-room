@@ -19,6 +19,9 @@ const roomShema = new Schema({
     canSee: {
         type: Boolean,
         required: true
+    },
+    invite_token:{
+        type: String
     }
 });
 

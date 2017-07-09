@@ -2,8 +2,16 @@ extends ../layouts/layout
 
 block content
     div.row
-        div.col-md-7.well
+        div.col-md-8.well.clearfix
+            div#message_list
             h3  Chat
-        div.col-md-2
-        div.col-md-3.well
+            textarea(name="message")#message.form-control
+            button#submit_btn.btn.btn-success.pull-right(style="margin-top: 5px;") Send
+            if room.type == 'private'
+                button#generate_link.btn.btn-primary.pull-left(style="margin-top: 5px;") Generate
+                a#link_field
+        div.col-md-4.well#onlineUsersList
             h3  Users online
+
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/main.js")

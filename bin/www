@@ -20,6 +20,10 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+const io = require('socket.io')(server);
+const attachSocketListeners = require('../lib/io');
+
+attachSocketListeners(io, app);
 
 /**
  * Listen on provided port, on all network interfaces.

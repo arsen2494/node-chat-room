@@ -3,12 +3,12 @@ const router = express.Router();
 const csrf = require('csurf');
 let Room = require('../models/room');
 
-// router.use(function (req, res, next) {
-//     // console.log(req.cookies);
-//     console.log(req.body);
-//     next();
-// });
-router.use(csrf({cookie: true}));
+router.use(function (req, res, next) {
+    console.log(req.cookies);
+    console.log(req.body);
+    next();
+});
+// router.use(csrf({cookie: true, ignoreMethods: ['PUT']}));
 
 
 router.get('/', function (req, res, next) {
@@ -83,12 +83,19 @@ router.post('/', isLogin, function (req, res, next) {
     }
 });
 
+router.put('/:id', (req, res) => {
+    const {token} = req.body;
+    Room.update({_id: req.params.id}, {$set: {invite_token: token}})
+        .then(() => res.status(200).send())
+        .catch(e => res.status(500).send(e));
+});
 router.get('/:id', function (req, res, next) {
     Room.findOne({_id: req.params.id}, function (err, room) {
         if (err) {
             res.status(500).send(err);
+        } else {
+            res.render('rooms/show', {title: room.name, roomId: req.params.id, room: room});
         }
-        res.render('rooms/show', {title: room.name});
     });
 });
 
